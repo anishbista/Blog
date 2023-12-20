@@ -17,7 +17,9 @@ rel="stylesheet">
     <h1><a href="{% url 'home' %}">Django blog</a></h1>
     </div>
     <div class="nav-right">
+    {% if user.is_authenticated %}
     <a href="{% url 'post_new' %}">+ New Blog Post</a>
+    {% endif %}
     </div>
     </header>
     {% if user.is_authenticated %}
@@ -28,7 +30,7 @@ rel="stylesheet">
     </form>
     {% comment %} <p><a href="{% url 'logout' %}">Log Out</a></p> {% endcomment %}
     {% else %}
-    <p>You are not logged in.</p>
+    <p>You are not logged in. Login to view blogs</p>
     <a href="{% url 'login' %}">Log In</a> |
     <a href="{% url 'signup' %}">Sign Up</a>
     {% endif %}

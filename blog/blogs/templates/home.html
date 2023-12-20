@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if user.is_authenticated %}
 {% for post in post_list %}
     <div>
-        
         {% comment %} <h2><a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h2> {% endcomment %}
         <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
         <p>{{post.body}}</p>
-
+        
+        
     </div>
-
-{% endfor %}
+    
+    {% endfor %}
+    {% endif %}
 
 {% endblock content %}
