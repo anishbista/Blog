@@ -20,6 +20,18 @@ rel="stylesheet">
     <a href="{% url 'post_new' %}">+ New Blog Post</a>
     </div>
     </header>
+    {% if user.is_authenticated %}
+    <p>Hi {{user.username}}</p>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    {% comment %} <p><a href="{% url 'logout' %}">Log Out</a></p> {% endcomment %}
+    {% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a> |
+    <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
     {% block content %}
     {% endblock content %}
     </div>
